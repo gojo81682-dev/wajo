@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>A Special Friend: Wajiya</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts for romantic cursive and elegant text -->
+  <style>
+    /* Import fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto&display=swap');
+
+    /* Global Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #fdeff9 0%, #f9f7ff 100%);
+      color: #333;
+      line-height: 1.6;
+      text-align: center;
+    }
+    h1, h2, h3 {
+      font-family: 'Dancing Script', cursive;
+      color: #d16ba5; /* Soft purple-pink */
+      margin-top: 1.2em;
+      margin-bottom: 0.5em;
+    }
+    h1 { font-size: 3em; }
+    h2 { font-size: 2.5em; }
+    h3 { font-size: 2em; }
+
+    p, li {
+      font-size: 1.1em;
+      color: #444;
+      margin: 0.5em 1em;
+    }
+    a {
+      color: #c48bff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #9a4dff;
+    }
+    /* Container layout */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2em;
+    }
+    section {
+      padding: 4em 0;
+      opacity: 0; /* hidden until animated */
+      transform: translateY(30px);
+      animation: fadeInUp 1s forwards;
+    }
+    section:nth-of-type(1) { animation-delay: 0.2s; }
+    section:nth-of-type(2) { animation-delay: 0.4s; }
+    section:nth-of-type(3) { animation-delay: 0.6s; }
+    section:nth-of-type(4) { animation-delay: 0.8s; }
+    section:nth-of-type(5) { animation-delay: 1.0s; }
+
+    /* Navigation Buttons */
+    .nav-buttons {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+    }
+    .nav-buttons button {
+      background-color: #ff69b4;
+      border: none;
+      color: white;
+      padding: 0.6em 1.2em;
+      margin: 0.2em;
+      border-radius: 0.5em;
+      font-size: 1em;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.2s, background-color 0.3s;
+    }
+    .nav-buttons button:hover {
+      background-color: #ff85c2;
+      transform: translateY(-2px);
+    }
+    .nav-buttons button:active {
+      transform: scale(0.97);
+    }
+
+    /* Section Titles */
+    .section-title {
+      margin-bottom: 0.5em;
+      color: #9a4dff;
+    }
+
+    /* Heart Icon */
+    .heart {
+      color: #ff6b81;
+      font-size: 2em;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    /* FadeInUp Animation */
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Gallery */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1em;
+    }
+    .gallery img {
+      width: 180px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 0.8em;
+      transition: transform 0.3s, opacity 0.3s;
+      cursor: pointer;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    /* Modal (hidden by default) */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 10% auto;
+      padding: 2em;
+      border: 2px solid #d16ba5;
+      width: 80%;
+      max-width: 500px;
+      border-radius: 1em;
+      animation: fadeInUp 0.5s forwards;
+    }
+    .modal-close {
+      color: #d16ba5;
+      float: right;
+      font-size: 1.5em;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .modal-close:hover {
+      color: #ff69b4;
+    }
+
+    /* Confetti pieces */
+    .confetti-piece {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: #ff6b81;
+      opacity: 0.9;
+      z-index: 999;
+      animation: confetti-fall 3s linear infinite;
+    }
+    @keyframes confetti-fall {
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0.2; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Buttons -->
+  <div class="nav-buttons">
+    <button onclick="scrollToSection('how-we-met')">How We Met</button>
+    <button onclick="scrollToSection('why-special')">Why You’re Special</button>
+    <button onclick="scrollToSection('moments')">Moments</button>
+    <button onclick="scrollToSection('maybe-someday')">Maybe Someday</button>
+    <button onclick="scrollToSection('gallery')">Gallery</button>
+  </div>
+
+  <!-- Landing/Hero Section -->
+  <section id="landing">
+    <div class="container">
+      <h1>Welcome, Wajiya!</h1>
+      <p>You light up my life like the brightest star. Thank you for coming into my world and being an amazing friend.</p>
+      <p>💖 Every moment with you feels like a beautiful adventure. 💖</p>
+      <div>
+        <button onclick="startConfetti()" style="font-size:1.2em; margin-top:1em; background:#ff6b81; border:none; color:white; padding:0.8em 1.5em; border-radius:0.5em;">
+          Celebrate 🎉
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- How We Met Section -->
+  <section id="how-we-met">
+    <div class="container">
+      <h2 class="section-title">How We Met</h2>
+      <p>It feels like fate brought us together. I still remember the day we first chatted online. We bonded over late-night memes and surprising stories. Even the simple beginning of our friendship (that day over coffee selfies!) has become one of my favorite memories. </p>
+      <p>Thank you for reaching out first – that simple "Hi" turned into a wonderful journey. Every message since then has been a gift.</p>
+    </div>
+  </section>
+
+  <!-- Why You're Special Section -->
+  <section id="why-special">
+    <div class="container">
+      <h2 class="section-title">Why You’re Special</h2>
+      <ul style="list-style: none; padding: 0;">
+        <li><span class="heart">❤️</span> **Your Kind Heart:** You always know how to make me smile and feel better. Thank you for your kindness and warmth.</li>
+        <li><span class="heart">❤️</span> **Your Laughter:** You fill our chat with laughter. Every joke and funny story is a treasure.</li>
+        <li><span class="heart">❤️</span> **Your Support:** When I needed someone to listen, you were there. Your support means the world to me.</li>
+        <li><span class="heart">❤️</span> **Your Creativity:** Whether it’s doodles or playlists, your creativity inspires me.</li>
+        <li><span class="heart">❤️</span> **Your Friendship:** You are genuine, loyal, and always have my back. I am so grateful to have you as my friend.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Moments Section -->
+  <section id="moments">
+    <div class="container">
+      <h2 class="section-title">Moments We've Shared</h2>
+      <p>Remember our first voice call at midnight? We talked about everything until the sunrise. It was magical to laugh and dream together.</p>
+      <p>And that time we both got lost in the city but ended up finding the coziest tea shop? Simple adventures with you are the best adventures.</p>
+      <p>From late-night gaming marathons to honest heart-to-hearts, each moment has become a cherished memory. I treasure every second.</p>
+    </div>
+  </section>
+
+  <!-- Maybe Someday Section (Subtle Confession) -->
+  <section id="maybe-someday">
+    <div class="container">
+      <h2 class="section-title">Maybe Someday</h2>
+      <p>Sometimes I wonder: what would it be like if we were more than just best friends? But for now, I'm just grateful to have you in my life.</p>
+      <p>If the stars ever align, I hope to tell you in person how special you are to me. Until then, know that you have my heart!</p>
+      <button id="openModalBtn" style="margin-top:1em; background:#d16ba5; border:none; color:white; padding:0.8em 1.5em; border-radius:0.5em; cursor:pointer;">
+        A Little Secret...
+      </button>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery">
+    <div class="container">
+      <h2 class="section-title">Gallery</h2>
+      <p>Some of our favorite snapshots (even if virtual!).</p>
+      <div class="gallery">
+        <img src="https://via.placeholder.com/180x120.png?text=Friendship+1" alt="Friendship photo 1">
+        <img src="https://via.placeholder.com/180x120.png?text=Friendship+2" alt="Friendship photo 2">
+        <img src="https://via.placeholder.com/180x120.png?text=Friendship+3" alt="Friendship photo 3">
+        <img src="https://via.placeholder.com/180x120.png?text=Friendship+4" alt="Friendship photo 4">
+        <img src="https://via.placeholder.com/180x120.png?text=Friendship+5" alt="Friendship photo 5">
+      </div>
+      <p style="margin-top:1em; font-style: italic;">Click any image above to make it larger.</p>
+    </div>
+  </section>
+
+  <!-- Modal for Secret Message -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <h3>Just Between Us</h3>
+      <p>I think you are truly amazing, Wajiya. Thank you for being the wonderful person you are. 💖</p>
+      <p>(Shh... this is a secret little note from me to you.)</p>
+    </div>
+  </div>
+
+  <!-- Confetti container -->
+  <div id="confetti-container"></div>
+
+  <script>
+    // Smooth scrolling to sections
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Modal logic (opens/closes the secret message)
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("openModalBtn");
+    var span = document.getElementsByClassName("modal-close")[0];
+    btn.onclick = function() { modal.style.display = "block"; }
+    span.onclick = function() { modal.style.display = "none"; }
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+
+    // Image click enlarges in a simple alert (placeholder for modal)
+    document.querySelectorAll('.gallery img').forEach(img => {
+      img.addEventListener('click', () => {
+        alert('Imagine this image enlarged!\n(This is where a lightbox/modal could appear.)');
+      });
+    });
+
+    // Confetti effect
+    function startConfetti() {
+      const container = document.getElementById('confetti-container');
+      const colors = ['#ff6b81', '#ffb3c6', '#d16ba5', '#c48bff', '#ff9ce4'];
+      // create many confetti pieces
+      for (let i = 0; i < 70; i++) {
+        let confetto = document.createElement('div');
+        confetto.className = 'confetti-piece';
+        confetto.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetto.style.left = Math.random() * 100 + 'vw';
+        confetto.style.top = '-10vh';
+        confetto.style.opacity = (Math.random() * 0.5 + 0.5);
+        // random horizontal motion
+        confetto.style.transform = 'rotate(' + (Math.random()*360) + 'deg)';
+        // add to container
+        container.appendChild(confetto);
+        // remove confetto after animation
+        setTimeout(() => { container.removeChild(confetto); }, 3000);
+      }
+    }
+  </script>
+</body>
+</html>
